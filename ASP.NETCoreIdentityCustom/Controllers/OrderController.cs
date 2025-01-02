@@ -22,7 +22,7 @@ namespace MyIceDream.Controllers
 
 
 
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
         public ActionResult Index()
         {
             var orders = _context.Orders.ToList();
@@ -31,10 +31,7 @@ namespace MyIceDream.Controllers
 
         public IActionResult Create()
         {
-            //// You may want to populate product options, for example, from the database
-            //var products = _context.Products.ToList(); // Assuming there's a Products table
-            //ViewBag.Products = new SelectList(products, "Id", "Name"); // Adjust to your actual Product model
-
+           
             return View();
         }
 
@@ -47,14 +44,14 @@ namespace MyIceDream.Controllers
             {
 
                 // Assign the currently logged-in user's ID to the Order
-                order.UserId = User?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                //order.UserId = User?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-                // You might want to calculate the TotalPrice here based on ProductId and Quantity
-                var product = _context.Products.FirstOrDefault(p => p.Id == order.ProductId);
-                if (product != null)
-                {
-                    order.TotalPrice = product.Price * order.Quantity; // Assuming product has a 'Price' property
-                }
+                //// You might want to calculate the TotalPrice here based on ProductId and Quantity
+                //var product = _context.Products.FirstOrDefault(p => p.Id == order.ProductId);
+                //if (product != null)
+                //{
+                //    order.TotalPrice = product.Price * order.Quantity; // Assuming product has a 'Price' property
+                //}
 
                 // Add the new order to the context
                 _context.Orders.Add(order);
